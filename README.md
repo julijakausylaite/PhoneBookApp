@@ -44,3 +44,9 @@ docker-compose exec php php bin/console doctrine:migrations:migrate --no-interac
 ```
 docker-compose exec php ./vendor/bin/phpunit
 ```
+
+## Stop 
+
+```
+docker compose down --remove-orphans
+```
