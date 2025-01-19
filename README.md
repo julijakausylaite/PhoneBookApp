@@ -1,16 +1,21 @@
-# Symfony Docker Project
+# PhoneBook project with Symfony using Docker
 
-This is a Symfony project running inside Docker containers.
+Phone book online:
+- Phone entries available to registered users
+- A phonebook entry can be shared and unshared with another user (unshare function is in edit contact page)
+- Phonebook entry: name, phone (full CRUD)
+- Unit test
+- Feature test
 
-## Prerequisites
-
+Prerequisites:
 - Docker
 - Docker Compose
 
 ## Running the Project
 
 ### 1. Clone the Repository
-```bash
+
+```
 git clone https://github.com/julijakausylaite/PhoneBookApp.git
 cd PhoneBookApp
 ```
@@ -32,15 +37,18 @@ docker compose up --pull always -d --wait
 ```
 https://localhost
 ```
+
 ## Unit and Feature tests
 
 ### 1. Run the database migration commands
+
 ```
 docker-compose exec php bin/console make:migration
 docker-compose exec php php bin/console doctrine:migrations:migrate --no-interaction --env=test
 ```
 
 ### 2. Run the tests
+
 ```
 docker-compose exec php ./vendor/bin/phpunit
 ```
