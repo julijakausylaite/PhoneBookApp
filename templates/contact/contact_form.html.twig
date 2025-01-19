@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="indigo-text text-darken-2">{{ title }}</h1>
+        <a href="/" type="button" class="btn btn-outline-primary mb-5">Back to contact list</a>
+        <div class="mb-5">
+            {{ form_start(form) }}
+            {{ form_row(form.contactName) }}
+            {{ form_row(form.phone) }}
+            <button type="submit" class="btn btn-dark mt-3">{{ submit_button }}</button>
+            {{ form_end(form) }}
+        </div>
+
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-dark">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {% if shared_with is not empty %}
+            <h2>Shared With</h2>
+            <ul class="list-group">
+                {% for user in shared_with %}
+                    <li class="list-group-item p-0">
+                        <div class="d-flex">
+                            <div class="w-100 py-2 px-3">
+                                <div class="open-contact">
+                                    <div class="fw-bold">{{ user.username }}</div>
+                                </div>
+                            </div>
+                            <div class="border-start">
+                                <div class="py-2 px-3 ">
+                                    <form
+                                        action="{{ path('contact_unshare', { id: contact_id, userId: user.id }) }}"
+                                        method="post" style="display: inline;">
+                                        <button type="submit" class="btn btn-danger btn-sm">Unshare</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}
