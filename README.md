@@ -32,3 +32,15 @@ docker compose up --pull always -d --wait
 ```
 https://localhost
 ```
+## Unit and Feature tests
+
+### 1. Run the database migration commands
+```
+docker-compose exec php bin/console make:migration
+docker-compose exec php php bin/console doctrine:migrations:migrate --no-interaction --env=test
+```
+
+### 2. Run the tests
+```
+docker-compose exec php ./vendor/bin/phpunit
+```
