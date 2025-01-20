@@ -18,10 +18,10 @@ class ContactController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response {
 
-//        $user = $this->getUser();
-//        if (!$user) {
-//            return $this->redirectToRoute('app_login');
-//        }
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
 
         $user = $this->getUser();
         if (!$user instanceof \App\Entity\User) {
